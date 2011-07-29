@@ -23,7 +23,7 @@
             -moz-box-shadow: 3px 3px 5px rgba(0, 0, 0, .2);
             -webkit-box-shadow: 3px 3px 5px rgba(0, 0, 0, .2);
             box-shadow: 3px 3px 5px rgba(0, 0, 0, .2);
-            cursor: hand;
+            cursor: pointer;
             margin-top: 10px;
             margin-left: 10px;
             display: inline-block;
@@ -98,6 +98,11 @@
             -webkit-box-shadow: 3px 3px 5px rgba(0, 0, 0, .2);
             box-shadow: 3px 3px 5px rgba(0, 0, 0, .2);
         }
+
+		#search
+		{
+			float:right;
+		}
     </style>
     <script id="personTemplate" type="text/x-jquery-tmpl">
         <section class='person min'>
@@ -219,6 +224,9 @@
     </script>
 </head>
 <body>
+	<section id="search">
+		<input type="search" autofocus>
+	</section>
     <section id="container">
 	</section>
 </body>

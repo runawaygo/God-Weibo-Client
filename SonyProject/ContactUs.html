@@ -1,0 +1,218 @@
+<!DOCTYPE html> 
+<html class="ui-mobile landscape min-width-320px min-width-480px min-width-768px max-width-1024px"> 
+	<head> 
+	<title>Page Title</title> 
+	<link rel="stylesheet" href="jquery.mobile-1.0b1.css" />
+	<style>
+	/* docs site layout */
+
+	@media all and (min-width: 650px){
+
+	    .jqm-home {
+	        position: absolute;
+	        left: 10px;
+	        top: 0;
+	    }
+	    .type-home .ui-content {
+	        margin-top: 5px;
+	    }
+	    .ui-mobile #jqm-homeheader {
+	        max-width: 340px;
+	    }
+	    .ui-mobile .jqm-themeswitcher {
+	        float: right;
+	    }
+	    p.intro {
+	        margin: 2em 0;
+	    }
+	    .type-home .ui-content,
+	    .type-interior .ui-content {
+	        padding: 0;
+	        background: url(../images/px-ccc.gif) 50% 0 repeat-y;
+	    }
+	    .type-interior .ui-content {
+	        background-position: 45%;
+	        overflow: hidden;
+	    }
+	    .content-secondary {
+	        text-align: left;
+	        float: left;
+	        width: 45%;
+	        background: none;
+	        border-top: 0;
+	    }
+	    .content-secondary,
+	    .type-interior .content-secondary {
+	        margin: 30px 0 20px 2%;
+	        padding: 20px 4% 0 0;
+	            background: none;
+	    }
+	    .type-index .content-secondary {
+	        padding: 0;
+	    }
+	    .type-index .content-secondary .ui-listview {
+	        margin: 0;
+	    }
+
+	    .ui-mobile #jqm-homeheader {
+	        padding: 0;
+	    }
+	    .content-primary {
+	        width: 45%;
+	        float: right;
+	        margin-top: 30px;
+	        margin-right: 1%;
+	        padding-right: 1%;
+	    }
+	    .content-primary ul:first-child {
+	        margin-top: 0;
+	    }
+	    .content-secondary h2 {
+	        position: absolute;
+	        left: -9999px;
+	    }
+	    .type-interior .content-primary {
+	        padding: 1.5em 6% 3em 0;
+	        margin: 0;
+	    }
+	    /* fix up the collapsibles - expanded on desktop */
+	    .content-secondary .ui-collapsible-heading {
+	        display: none;
+	    }
+	    .content-secondary .ui-collapsible-contain {
+	        margin:0;
+	    }
+	    .content-secondary .ui-collapsible-content {
+	        display: block;
+	        margin: 0;
+	        padding: 0;
+	    }
+	    .type-interior  .content-secondary .ui-li-divider {
+	        padding-top: 1em;
+	        padding-bottom: 1em;
+	    }
+	    .type-interior .content-secondary {
+	        margin: 0;
+	        padding: 0;
+	    }
+
+	}
+		@media all and (min-width: 750px){
+		    .type-home .ui-content,
+		    .type-interior .ui-content {
+		        background-position: 39%;
+		    }
+		    .content-secondary {
+		        width: 34%;
+		    }
+		    .content-primary {
+		        width: 56%;
+		        padding-right: 1%;
+		    }   
+		    .type-interior .ui-content {
+		        background-position: 34%;
+		    }
+		}
+
+		@media all and (min-width: 1200px){
+		    .type-home .ui-content{
+		        background-position: 38.5%;
+		    }
+		    .type-interior .ui-content {
+		        background-position: 30%;
+		    }
+		    .content-secondary {
+		        width: 30%;
+		        padding-right:6%;
+		        margin: 30px 0 20px 5%;
+		    }
+		    .type-interior .content-secondary {
+		        margin: 0;
+		        padding: 0;
+		    }
+		    .content-primary {
+		        width: 50%;
+		        margin-right: 5%;
+		        padding-right: 3%;
+		    }
+		    .type-interior .content-primary {
+		        width: 60%;
+		    }
+		}
+	</style>
+	<script type="text/javascript" src="jquery-1.6.1.min.js"></script>
+	<script type="text/javascript" src="jquery.mobile-1.0b1.js"></script>
+</head> 
+<body  class="ui-mobile-viewport"> 
+	<div data-role="page" id="jqm-home" class="type-home">
+		<div  data-role="header" data-theme="b">
+			<h1>Online Brand Survey System</h1>
+		</div>
+	    <div data-role="content">
+
+			 <div class="content-primary">
+					
+					
+					<ul  data-role="listview" data-inset="true" data-theme="c" data-dividertheme="f">
+						
+					<li  data-theme="a"><h1>Data Collection</h1></li>
+					<li>
+						<div id="dataCollectionContainer">
+							<table id="data-collection-table" style="color:#333;">
+								<th>
+									
+								</th>
+								<tr style="font-size:16px;color:black;">
+									<td  style="min-width:100px;">Name</td>
+									<td  style="min-width:100px;">Sex</td>
+									<td  style="min-width:100px;">Age</td>
+									<td  style="min-width:100px;">Favorites</td>
+								</tr>
+								<tr>
+									<td  style="min-width:100px;">Tomas Huang</td>
+									<td  style="min-width:100px;">Male</td>
+									<td  style="min-width:100px;">26</td>
+									<td  style="min-width:100px;">Sony, Samssuing</td>
+								</tr>
+								<tr  style="background-color:#aaa;">
+									<td  style="min-width:100px;">Lily Greem</td>
+									<td  style="min-width:100px;">female</td>
+									<td  style="min-width:100px;">18</td>
+									<td  style="min-width:100px;">Sony, LG</td>
+								</tr>
+								<tr>
+									<td  style="min-width:100px;">James Carter</td>
+									<td  style="min-width:100px;">male</td>
+									<td  style="min-width:100px;">30</td>
+									<td  style="min-width:100px;">Sony, Panasonic</td>
+								</tr>
+								
+							</table>
+						</div>
+					</li>
+					</ul>
+		        </div>
+
+	        <div class="content-secondary">
+
+	            <p class="intro"><strong>Welcome.</strong> This is an online brand survey system. Customer could fill the form and submit to server. Then the administrator could gather the data and make analysis and charts.</p>
+
+	            <ul data-role="listview" data-inset="true" data-theme="c" >
+	                <li data-role="list-divider">Menus</li>
+	                <li><a href="InformationSurvey.html">Information Survey</a></li>
+	                <li><a href="DataCollection.html">Data Collection</a></li>
+	                <li><a href="Charts.html">Charts</a></li>
+	                <li><a href="ContactUs.html">Contact us</a></li>
+	            </ul>
+
+	        </div><!--/content-primary-->   
+
+	    </div>
+
+	    <div data-role="footer" class="footer-docs" data-theme="c">
+	            <p style="float:right">&copy; 2011 Weima Group Software Design &nbsp;&nbsp;&nbsp;</p>
+	    </div>  
+
+	</div>
+	</body>
+</html>
