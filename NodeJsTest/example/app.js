@@ -37,7 +37,8 @@ app.get('/oauth', function(req, res){
 	sinaoauth.oAuth(req, res, function(error, access_key, access_secret) {
 		res.cookie("access_key", access_key);
 		res.cookie("access_secret", access_secret);
-		res.render('oauth.html');
+		//res.render('oauth.html');
+		res.send({'dd':'superwolf'});
 	});
 });
 
@@ -69,4 +70,7 @@ app.post('/test', function(req, res) {
 	});
 });
 
-app.listen(8080);
+app.listen(8000);
+
+console.log('listen on 8000');
+

@@ -10,15 +10,20 @@
             -o-transition: All 0.2s ease-out;
             cursor: pointer;
         }
-        
-        .circle-btn-hover
+        #circle-btn
+        {
+            width: 64px; height: 64px;
+            margin: 64px; z-index: 100px;
+        }
+
+		#mainContainer:hover #circle-btn
         {
             -webkit-transform: rotate(0deg) scale(1.2) skew(1deg) translate(0px);
             -moz-transform: rotate(0deg) scale(1.2) skew(1deg) translate(0px);
             -o-transform: rotate(0deg) scale(1.2) skew(1deg) translate(0px); 
         }
         
-        .background-show
+        #mainContainer:hover #background-image
         {
             -webkit-transform: scale(1);
             -moz-transform: scale(1);
@@ -26,16 +31,43 @@
             opacity:1;
         }
         
-        .background-hide
+ 
+		#background-image
         {
+	 		width: 100%; height: 100%; position: absolute; top: 0px; left: 0px; z-index: -1;
             -webkit-transform: scale(0.6);
             -moz-transform: scale(0.6);
             -o-transform: scale(0.6);
             opacity:0;
         }
         
+		#mainContainer:hover .child {
+            -webkit-transform: rotate(0deg) scale(1) skew(1deg) translate(0px);
+            -moz-transform: rotate(0deg) scale(1) skew(1deg) translate(0px);
+            -o-transform: rotate(0deg) scale(1) skew(1deg) translate(0px);
+            opacity:1;
+		}
+		
+		
+		#mainContainer:hover .child:hover
+		{
+			 -webkit-transition: All 0.1s ease-out;
+	            -moz-transition: All 0.1s ease-out;
+	            -o-transition: All 0.1s ease-out;
+	            -webkit-transform: rotate(0deg) scale(1.2) skew(1deg) translate(0px);
+	            -moz-transform: rotate(0deg) scale(1.2) skew(1deg) translate(0px);
+	            -o-transform: rotate(0deg) scale(1.2) skew(1deg) translate(0px);
+		}
+
         .child
-        {}
+        {
+            -webkit-transform: rotate(0deg) scale(0.5) skew(1deg) translate(0px);
+            -moz-transform: rotate(0deg) scale(0.5) skew(1deg) translate(0px);
+            -o-transform: rotate(0deg) scale(0.5) skew(1deg) translate(0px);
+			position:absolute;
+            opacity:0;
+	
+		}
         
         .child-click-animation {
             -webkit-animation: cssAnimation 0.3s 1 ease-in;
@@ -49,47 +81,7 @@
             from { -moz-transform: rotate(360deg) scale(1) skew(1deg) translate(0px); }
             to { -moz-transform: rotate(360deg) scale(1.2) skew(1deg) translate(0px); }
         }
-        
-        .child-hide
-        {
-            -webkit-transition: All 0.1s ease-in;
-            -moz-transition: All 0.1s ease-in;
-            -o-transition: All 0.1s ease-in;
-            -webkit-transform: rotate(0deg) scale(0.5) skew(1deg) translate(0px);
-            -moz-transform: rotate(0deg) scale(0.5) skew(1deg) translate(0px);
-            -o-transform: rotate(0deg) scale(0.5) skew(1deg) translate(0px);
-            opacity:0;
-        }
-        .child-show
-        {
-            -webkit-transition: All 0.2s ease-out;
-            -moz-transition: All 0.2s ease-out;
-            -o-transition: All 0.2s ease-out;
-            -webkit-transform: rotate(0deg) scale(1) skew(1deg) translate(0px);
-            -moz-transform: rotate(0deg) scale(1) skew(1deg) translate(0px);
-            -o-transform: rotate(0deg) scale(1) skew(1deg) translate(0px);
-            opacity:1;
-        }
-        
-        .child:hover
-        {
-            -webkit-transition: All 0.1s ease-out;
-            -moz-transition: All 0.1s ease-out;
-            -o-transition: All 0.1s ease-out;
-            -webkit-transform: rotate(0deg) scale(1.2) skew(1deg) translate(0px);
-            -moz-transform: rotate(0deg) scale(1.2) skew(1deg) translate(0px);
-            -o-transform: rotate(0deg) scale(1.2) skew(1deg) translate(0px); 
-        }
-        
-        #background-image
-        {
-            width: 100%; height: 100%; position: absolute; top: 0px; left: 0px; z-index: -1;
-        }
-        #circle-btn
-        {
-            width: 64px; height: 64px;
-            margin: 64px; z-index: 100px;
-        }
+
         #mainContainer
         {
             position: absolute; cursor: pointer; width: 192px;
@@ -110,25 +102,22 @@
             { url: '/project/projectlist', title: 'project', image: 'style/functionimages/project-icon.png' },
             ];
 
-        var flag = 0;
-
-        var mainRadius = 32;
-        var subRadius = 32;
-        var maxRadius = mainRadius + subRadius;
+        var centerDistance = 64;
+		var elementEdge = 40;
         var startAngel = Math.PI * 2 * 5 / 8;
-        var addtionalAngel = Math.asin(subRadius / maxRadius) * 2;
+        var addtionalAngel = Math.PI * 2 / 6;
 
         var maxCount = Math.PI * 2 / addtionalAngel;
-        var functionContainerTemplate =
-            "<img class='child' title='{title}' style='width:40px;height:40px;' src='{image}' />";
+        var functionContainerTemplate = "<img class='child' title='{title}' src='{image}' />";
 
         function createElement(functionData) {
             var elementHTML = functionContainerTemplate
                             .replace('{title}', functionData.title)
                             .replace('{image}', functionData.image);
-            var $functionContainer = $(elementHTML);
+            var $functionContainer = $(elementHTML).css({width:elementEdge,height:elementEdge});
 
-            $functionContainer.appendTo('#mainContainer')
+            $functionContainer
+			.appendTo('#mainContainer')
             .mousedown(function () {
                 $(this).addClass('child-click-animation');
             }).mouseup(function () {
@@ -138,56 +127,12 @@
                 event.preventDefault();
                 event.stopPropagation();
 
-                functionCall('http://' + document.location.host + functionData.url);
+                doSomething(functionData);
             });
         }
-
-
-        function functionCall(url) {
-            if (url.indexOf('target=action') == -1)
-                $.postMessage('url:' + url, '*', parent);
-            else {
-                $.ajax({
-                    url: url,   //接收页面
-                    type: 'post',      //POST方式发送数据
-                    async: false,      //ajax同步
-                    dataType: 'json',
-                    success: function (e) {
-                    }
-                });
-            }
-        }
-
-        function getAtDirection(x, y) {
-            var xStr, yStr;
-            xStr = "left";
-            yStr = "top";
-
-            if (x < 0) xStr = 'left';
-            else if (x == 0) xStr = 'center';
-            else if (x > 0) xStr = 'right';
-
-            if (y < 0) yStr = 'top';
-            else if (y == 0) yStr = 'center';
-            else if (y > 0) yStr = 'bottom';
-
-            return xStr + " " + yStr;
-        }
-        function getMyDirection(x, y) {
-            var xStr, yStr;
-            xStr = yStr = "left top";
-            if (x < 0) xStr = 'right';
-            else if (x == 0) xStr = 'center';
-            else if (x > 0) xStr = 'left';
-
-            if (y < 0) yStr = 'bottom';
-            else if (y == 0) yStr = 'center';
-            else if (y > 0) yStr = 'top';
-
-            return xStr + " " + yStr;
-        }
-
-
+		function doSomething(functionData){
+			
+		}
         function createCircleEffect() {
             for (var i = 0; i < functionItems.length; i++) {
                 createElement(functionItems[i]);
@@ -196,48 +141,27 @@
             $('.child')
             .each(function (i, item) {
                 var angle = startAngel + addtionalAngel * i;
-                var x = Math.sin(angle) * maxRadius;
-                var y = Math.cos(angle) * maxRadius;
-                $(item).position({ of: $('#mainContainer'), my: 'center center', at: 'center center', offset: x + ' ' + y });
-            });
-
-
-            $('#mainContainer')
-            .hover(function () {
-                $('#circle-btn').addClass('circle-btn-hover');
-                $('#background-image').removeClass('background-hide').addClass('background-show');
-                $('.child').removeClass('child-hide').addClass('child-show');
-                flag = 1;
-            }, function () {
-                hideChild();
+				//from center to desire point
+                var xDistance = Math.sin(angle) * centerDistance;
+                var yDistance = Math.cos(angle) * centerDistance;
+				
+				//center point
+				var center  ={x:96,y:96};
+				
+				var top = center.x + xDistance-elementEdge/2;
+				var left = center.y + yDistance-elementEdge/2;
+				
+				$(item).css({top:top,left:left});
             });
         }
-
-        function hideChild() {
-            flag = 0;
-            $('.child').removeClass('child-show').addClass('child-hide');
-            $('#background-image').removeClass('background-hide').addClass('background-hide');
-            setTimeout(function () {
-                if (flag == 0) {
-                    $('#circle-btn').removeClass('circle-btn-hover');
-                }
-            }, 300);
-        }
-
         $(function () {
             createCircleEffect();
-            hideChild();
-
-			$('#mainContainer')
-			.draggable()
-			.click(function() {
-			    $.postMessage('normal', '*', parent);
-			});
+			$('#mainContainer').draggable();
         });
-
     </script>
 </head>
 <body style="position: absolute; overflow: hidden; width: 100%; height: 100%; margin: 0;">
+	
     <div id="mainContainer">
         <img id="background-image" class="background-normal" src='style/functionimages/bg_bg.png' />
         <img id="circle-btn" src='style/functionimages/minimain.2.png' />
